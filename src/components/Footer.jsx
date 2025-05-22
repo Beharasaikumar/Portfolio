@@ -3,7 +3,7 @@ const Footer = () => {
     <footer className="bg-white text-black dark:bg-gray-800 dark:text-gray-200 py-6">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between px-6">
         <p className="text-gray-400 dark:text-gray-300 text-sm">
-          © 2025 Happy Dude. All rights reserved.
+          © 2025 Sai Kumar. All rights reserved.
         </p>
         <div className="flex gap-4 mt-4 md:mt-0">
           <a

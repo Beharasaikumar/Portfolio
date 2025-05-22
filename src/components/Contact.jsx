@@ -42,7 +42,7 @@ const Contact = () => {
       <div className="flex flex-col lg:flex-row items-center justify-around gap-8 max-w-7xl w-full">
         <div className="flex flex-col items-center gap-4">
           <div className="flex">
-            <div className="text-gray-800 dark:text-white">
+            <div className="text-blue-800 dark:text-white">
               <FontAwesomeIcon icon={faEnvelope} fontSize={"48"} /> <br /><br />
               <FontAwesomeIcon icon={faGithub} fontSize={"48"} />
             </div>
