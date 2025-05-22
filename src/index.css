@@ -7,7 +7,7 @@ body {
   padding: 0;
   @apply bg-white text-black dark:bg-gray-900 dark:text-white;
   font-family: Arial, sans-serif;
-}
+ }
 
 html {
   scroll-behavior: smooth;
@@ -35,3 +35,27 @@ html {
     opacity: 1;
   }
 }
+
+.spline-bg {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+ width: 100%;
+  height: 100%; 
+   pointer-events: none; /* Optional: makes sure background doesn't block clicks */
+}
+ .spline-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none; /* Optional: makes sure background doesn't block clicks */
+}
+
+.relative.z-10 {
+  z-index: 1;
+}
+
+

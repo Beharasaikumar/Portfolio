@@ -6,8 +6,8 @@ const Header = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <header className="flex justify-between items-center p-6 md:p-6 fixed w-full z-50 bg-white text-black dark:bg-gray-900 shadow dark:shadow-lg transition-colors duration-300">
-      <div className="text-xl md:text-2xl font-bold dark:text-white">Sai Kumar</div>
+    <header className="flex justify-around p-6 md:p-6 fixed w-full z-50 bg-white text-black dark:bg-gray-900 shadow dark:shadow-lg transition-colors duration-300">
+      <div className="text-xl md:text-2xl font-bold dark:text-white">Sai</div>
       <nav className="flex items-center space-x-4 md:space-x-6">
         <a href="#Home" className="dark:text-white hover:text-pink-400 text-sm md:text-base transition-colors">
           Home
