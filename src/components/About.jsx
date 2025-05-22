@@ -4,7 +4,11 @@ import { useEffect } from "react";
 
 const About = () => {
   const controls = useAnimation();
-  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
+  const imgControls = useAnimation();
+  const textControls = useAnimation();
+  const buttonControls = useAnimation();
+  const statsControls = useAnimation();
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
 
   useEffect(() => {
     if (inView) {
@@ -14,40 +18,145 @@ const About = () => {
         scale: 1,
         transition: { duration: 0.8, ease: "easeOut" },
       });
+      imgControls.start({
+        scale: 1,
+        opacity: 1,
+        transition: { duration: 1, ease: "easeOut", delay: 0.2 },
+      });
+      textControls.start({
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.6, ease: "easeOut", delay: 0.4 },
+      });
+      buttonControls.start({
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.6, ease: "easeOut", delay: 0.6 },
+      });
+      statsControls.start({
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.6, ease: "easeOut", delay: 0.8 },
+      });
     } else {
       controls.start({
         opacity: 0,
-        rotateY: 0,
-        scale: 0.5,
+        rotateY: 45,
+        scale: 0.8,
         transition: { duration: 0.8, ease: "easeIn" },
       });
+      imgControls.start({
+        scale: 0.8,
+        opacity: 0,
+        transition: { duration: 0.8, ease: "easeIn" },
+      });
+      textControls.start({
+        y: 50,
+        opacity: 0,
+        transition: { duration: 0.6, ease: "easeIn" },
+      });
+      buttonControls.start({
+        y: 50,
+        opacity: 0,
+        transition: { duration: 0.6, ease: "easeIn" },
+      });
+      statsControls.start({
+        y: 50,
+        opacity: 0,
+        transition: { duration: 0.6, ease: "easeIn" },
+      });
     }
-  }, [inView, controls]);
+  }, [inView, controls, imgControls, textControls, buttonControls, statsControls]);
+
+  const imageVariants = {
+    hover: {
+      scale: 1.05,
+      rotate: 2,
+      transition: { duration: 0.3 },
+    },
+  };
 
   return (
     <motion.section
       ref={ref}
       initial={{ opacity: 0, rotateY: 45, scale: 0.8 }}
       animate={controls}
-      className="min-h-screen w-full bg-white dark:bg-gradient-to-t dark:from-slate-950 dark:to-gray-800 flex items-center justify-center p-6 perspective-[1000px]"
+      className="min-h-screen w-full bg-white dark:bg-gradient-to-t dark:from-slate-950 dark:to-gray-800 flex items-center justify-center p-4 sm:p-6 lg:p-8 perspective-[1000px]"
       id="about"
     >
-      <div className="bg-gray-100 dark:bg-gray-800 dark:bg-opacity-80 bg-opacity-90 rounded-lg p-8 pt-16 max-w-full w-full text-center border border-gray-300 dark:border-gray-700">
-        <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-2">About Me</h2>
-        <p className="text-sm text-gray-700 dark:text-slate-300 mb-8">Transforming Ideas into the Digital Experience</p>
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
-          <div className="w-40 h-40 sm:w-56 sm:h-56 lg:w-72 lg:h-72">
-            <img src="/me.png" alt="Sai Kumar profile" className="w-full h-full rounded-full object-cover" />
-          </div>
-          <div className="max-w-xl text-sm text-gray-700 dark:text-slate-300">
-            <p className="mb-6">
+      <div className="bg-gray-100 dark:bg-gray-800 dark:bg-opacity-85 bg-opacity-95 rounded-2xl p-6 sm:p-8 pt-12 sm:pt-16 max-w-5xl w-full text-center border border-gray-300 dark:border-gray-700 shadow-xl">
+        <motion.h2
+          animate={textControls}
+          initial={{ y: 50, opacity: 0 }}
+          className="text-3xl sm:text-4xl font-bold text-pink-600 dark:text-pink-400 mb-2 tracking-tight"
+        >
+          About Me
+        </motion.h2>
+        <motion.p
+          animate={textControls}
+          initial={{ y: 50, opacity: 0 }}
+          className="text-sm sm:text-base text-gray-700 dark:text-slate-300 mb-8 max-w-2xl mx-auto"
+        >
+          Transforming Ideas into the Digital Experience
+        </motion.p>
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-6 sm:gap-8 lg:gap-12">
+          <motion.div
+            className="w-40 h-40 sm:w-56 sm:h-56 lg:w-72 lg:h-72 relative"
+            animate={imgControls}
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileHover="hover"
+            variants={imageVariants}
+          >
+            <img
+              src="/me1.png"
+              alt="Sai Kumar profile"
+              className="w-full h-full rounded-full object-cover border-4 border-pink-200 dark:border-pink-500 shadow-lg"
+            />
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20"
+              animate={{ opacity: [0, 0.3, 0], scale: [1, 1.1, 1] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
+          <div className="max-w-xl space-y-6">
+            <motion.p
+              animate={textControls}
+              initial={{ y: 50, opacity: 0 }}
+              className="text-sm sm:text-base text-gray-700 dark:text-slate-300 leading-relaxed"
+            >
               Crafting stunning, responsive, and high-performance websites that blend design & functionality.
-              I build fast, user-friendly, and SEO-optimized web experiences to help businesses grow.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              I build fast, user-friendly, and SEO-optimized web experiences to help businesses grow. With a passion for innovation,
+              I leverage cutting-edge technologies to deliver seamless digital solutions tailored to your needs, backed by 24/7 support to ensure your success.
+
+                                <motion.div
+          animate={statsControls}
+          initial={{ y: 50, opacity: 0 }}
+          className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto"
+        >
+          <div className="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md">
+            <h3 className="text-2xl font-bold text-pink-600 dark:text-pink-400">10K+</h3>
+            <p className="text-sm text-gray-600 dark:text-slate-300">Members Reached</p>
+          </div>
+          <div className="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md">
+            <h3 className="text-2xl font-bold text-pink-600 dark:text-pink-400">50+</h3>
+            <p className="text-sm text-gray-600 dark:text-slate-300">Projects Completed</p>
+          </div>
+          <div className="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md">
+            <h3 className="text-2xl font-bold text-pink-600 dark:text-pink-400">24/7</h3>
+            <p className="text-sm text-gray-600 dark:text-slate-300">Support Services</p>
+          </div>
+        </motion.div>
+            </motion.p>
+  
+
+            <motion.div
+              animate={buttonControls}
+              initial={{ y: 50, opacity: 0 }}
+              className="flex flex-col sm:flex-row justify-center gap-4"
+            >
               <a
                 href="#"
-                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full flex items-center justify-center gap-2 hover:from-purple-700 hover:to-pink-600 transition"
+                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full flex items-center justify-center gap-2 hover:from-purple-700 hover:to-pink-600 transition-transform transform hover:scale-105 shadow-md"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -61,13 +170,14 @@ const About = () => {
               </a>
               <a
                 href="#"
-                className="px-6 py-3 border border-gray-400 dark:border-gray-500 text-gray-800 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white transition"
+                className="px-6 py-3 border border-gray-400 dark:border-gray-500 text-gray-800 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white transition-transform transform hover:scale-105 shadow-md"
               >
                 View Projects
               </a>
-            </div>
+            </motion.div>
           </div>
         </div>
+   
       </div>
     </motion.section>
   );

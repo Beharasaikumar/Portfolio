@@ -29,18 +29,29 @@ const Project = () => {
     },
   };
 
+  const logoVariant = {
+    animate: {
+      y: [0, -10, 0],
+      scale: [1, 1.05, 1],
+      transition: {
+        y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+        scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+      },
+    },
+  };
+
   const projects = [
     {
-      title: "Arithmetic Solver",
-      description: "A JavaScript-based calculator that parses and solves arithmetic expressions with detailed steps.",
-      image: "https://via.placeholder.com/600x400?text=Arithmetic+Solver",
-      link: "https://github.com/yourusername/arithmetic-solver",
+      title: "Lomaa Skill",
+      description: "Lomaaskill is an online learning platform offering a wide range of professional courses to enhance skills and career growth.",
+      image: "/lomaa.png",
+      link: "https://github.com/Beharasaikumar/LomaaSkill.com",
     },
     {
-      title: "Auto Chat Discord Bot",
-      description: "An automated Discord bot that replies with contextual messages, using AI and custom commands.",
-      image: "https://via.placeholder.com/600x400?text=Auto+Chat+Discord",
-      link: "https://github.com/yourusername/auto-chat-discord",
+      title: "Instagram Clone",
+      description: "Insta-Clone is a social media web app that replicates core Instagram features like photo sharing, likes, comments, and user profiles.",
+      image: "/insta.jpg",
+      link: "https://github.com/kundetipavan/Insta-clone",
     },
   ];
 
@@ -61,6 +72,19 @@ const Project = () => {
       title: "Feedback & Delivery",
       description: "I collaborate for feedback and ensure the final product exceeds your expectations before delivery.",
     },
+  ];
+
+  const skillLogos = [
+    { name: "HTML", src: "/html.png" },
+    { name: "CSS", src: "/css.png" },
+    { name: "JavaScript", src: "/js.png" },
+    { name: "Tailwind CSS", src: "/tailwind.png" },
+    { name: "ReactJS", src: "/react.png" },
+    { name: "Node.js", src: "/node.png" },
+    { name: "Express.js", src: "/express.png" },
+    { name: "MySQL", src: "/sql.png" },
+    { name: "MongoDB", src: "/mongodb.png" },
+    { name: "GitHub", src: "/github.png" },
   ];
 
   return (
@@ -136,6 +160,34 @@ const Project = () => {
             variants={zAxisVariant}
             className="max-w-7xl w-full flex flex-col items-center"
           >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+              className="mt-10 w-full max-w-5xl"
+            >
+              <h3 className="text-2xl font-semibold text-pink-500 dark:text-pink-400 mb-6 text-center">
+                Technical Skills
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+                {skillLogos.map((logo, index) => (
+                  <motion.div
+                    key={logo.name}
+                    className="flex flex-col items-center"
+                    variants={logoVariant}
+                    animate="animate"
+                    custom={index}
+                  >
+                    <img
+                      src={logo.src}
+                      alt={`${logo.name} logo`}
+                      className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
+                     />
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">{logo.name}</p>
+                  </motion.div>
+                ))}
+              </div>
+             </motion.div> <br /><br />
             <div className="flex flex-col lg:flex-row gap-8 items-start w-full">
               <div className="flex-1 text-center lg:text-left mt-10">
                 <h3 className="text-4xl md:text-3xl font-bold text-pink-500 dark:text-pink-400 mb-2">
@@ -143,7 +195,7 @@ const Project = () => {
                   <span className="text-black dark:text-white">2x their revenue</span>
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
-                  I've refined this process over 10+ years in the design industry, making it a proven approach you can trust with confidence
+                  I've refined this process over 6+ months in the design industry, making it a proven approach you can trust with confidence
                 </p>
                 <div className="mt-8">
                   <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full flex items-center gap-x-2 hover:from-purple-700 hover:to-pink-600 transition-colors">
