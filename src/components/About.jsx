@@ -134,11 +134,11 @@ const About = () => {
           className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto"
         >
           <div className="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md">
-            <h3 className="text-2xl font-bold text-pink-600 dark:text-pink-400">10K+</h3>
+            <h3 className="text-2xl font-bold text-pink-600 dark:text-pink-400">100+</h3>
             <p className="text-sm text-gray-600 dark:text-slate-300">Members Reached</p>
           </div>
           <div className="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md">
-            <h3 className="text-2xl font-bold text-pink-600 dark:text-pink-400">50+</h3>
+            <h3 className="text-2xl font-bold text-pink-600 dark:text-pink-400">5+</h3>
             <p className="text-sm text-gray-600 dark:text-slate-300">Projects Completed</p>
           </div>
           <div className="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md">

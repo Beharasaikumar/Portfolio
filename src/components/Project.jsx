@@ -46,12 +46,14 @@ const Project = () => {
       description: "Lomaaskill is an online learning platform offering a wide range of professional courses to enhance skills and career growth.",
       image: "/lomaa.png",
       link: "https://github.com/Beharasaikumar/LomaaSkill.com",
+      link1: "http://lomaaskill.com",
     },
     {
       title: "Instagram Clone",
       description: "Insta-Clone is a social media web app that replicates core Instagram features like photo sharing, likes, comments, and user profiles.",
       image: "/insta.jpg",
       link: "https://github.com/kundetipavan/Insta-clone",
+            link1: "https://instanetlify.netlify.app",
     },
   ];
 
@@ -137,6 +139,7 @@ const Project = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-pink-500 dark:text-pink-400 mb-2">{project.title}</h3>
                 <p className="text-gray-700 dark:text-gray-400 text-sm mb-3">{project.description}</p>
+               <div className="flex justify-center gap-5 mb-4">
                 {project.link && (
                   <a
                     href={project.link}
@@ -147,6 +150,17 @@ const Project = () => {
                     View on GitHub
                   </a>
                 )}
+                 {project.link1 && (
+                  <a
+                    href={project.link1}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-pink-500 hover:underline"
+                  >
+                    View on Output
+                  </a>
+                )}
+                </div>
               </div>
             ))}
           </motion.div>

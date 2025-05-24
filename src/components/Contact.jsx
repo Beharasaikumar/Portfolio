@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
@@ -44,13 +45,16 @@ const Contact = () => {
           <div className="flex">
             <div className="text-blue-800 dark:text-white">
               <FontAwesomeIcon icon={faEnvelope} fontSize={"48"} /> <br /><br />
-              <FontAwesomeIcon icon={faGithub} fontSize={"48"} />
+              <FontAwesomeIcon icon={faGithub} fontSize={"48"} /><br /><br />
+              <FontAwesomeIcon icon={faLinkedin} fontSize={"48"} />
             </div>
             <div className="text-gray-700 dark:text-gray-300">
               <h3>&nbsp;&nbsp;Email</h3>
               <p>&nbsp;&nbsp;beharasaikumar1@gmail.com</p><br />
               <h3>&nbsp;&nbsp;Github</h3>
               <p>&nbsp;&nbsp;https://github.com/Beharasaikumar</p><br />
+               <h3>&nbsp;&nbsp;LinkedIn</h3>
+              <p>&nbsp;&nbsp;www.linkedin.com/in/behara-sai-kumar</p><br />
             </div>
           </div>
           <h3 className="text-xl font-semibold text-pink-600 dark:text-pink-400">Connect With Me</h3>
