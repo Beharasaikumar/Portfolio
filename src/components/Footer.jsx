@@ -7,7 +7,7 @@ const Footer = () => {
         </p>
         <div className="flex gap-4 mt-4 md:mt-0">
           <a
-            href="https://chat.example.com"
+            href="mailto:beharasaikumar1@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
             className="w-8 h-8 rounded-full bg-gray-700 dark:bg-gray-600 flex items-center justify-center hover:bg-gray-600 dark:hover:bg-gray-500 transition-colors"
@@ -29,7 +29,7 @@ const Footer = () => {
             </svg>
           </a>
           <a
-            href="https://linkedin.com/in/happy-dude"
+            href="https://linkedin.com/in/behara-sai-kumar-9a62582b3"
             target="_blank"
             rel="noopener noreferrer"
             className="w-8 h-8 rounded-full bg-gray-700 dark:bg-gray-600 flex items-center justify-center hover:bg-gray-600 dark:hover:bg-gray-500 transition-colors"
@@ -53,7 +53,7 @@ const Footer = () => {
             </svg>
           </a>
           <a
-            href="https://instagram.com/happy.dude"
+            href="https://instagram.com/__vicky_sai__01"
             target="_blank"
             rel="noopener noreferrer"
             className="w-8 h-8 rounded-full bg-gray-700 dark:bg-gray-600 flex items-center justify-center hover:bg-gray-600 dark:hover:bg-gray-500 transition-colors"

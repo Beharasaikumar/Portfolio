@@ -169,7 +169,8 @@ const About = () => {
                 Download CV
               </a>
               <a
-                href="#"
+                href="https://github.com/Beharasaikumar"
+                target="_blank"
                 className="px-6 py-3 border border-gray-400 dark:border-gray-500 text-gray-800 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white transition-transform transform hover:scale-105 shadow-md"
               >
                 View Projects

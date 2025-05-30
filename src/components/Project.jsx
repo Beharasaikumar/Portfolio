@@ -3,30 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Project = () => {
   const [activeTab, setActiveTab] = useState("Projects");
+  const [showAll, setShowAll] = useState(false);
 
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
+  const handleTabClick = (tab) => setActiveTab(tab);
 
   const zAxisVariant = {
-    hidden: {
-      opacity: 0,
-      scale: 0.9,
-      rotateX: -90,
-      transformOrigin: "top center",
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      rotateX: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.9,
-      rotateX: 90,
-      transition: { duration: 0.5, ease: "easeIn" },
-    },
+    hidden: { opacity: 0, scale: 0.9, rotateX: -90, transformOrigin: "top center" },
+    visible: { opacity: 1, scale: 1, rotateX: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    exit: { opacity: 0, scale: 0.9, rotateX: 90, transition: { duration: 0.5, ease: "easeIn" } },
   };
 
   const logoVariant = {
@@ -40,54 +24,67 @@ const Project = () => {
     },
   };
 
-  const projects = [
+  const allProjects = [
     {
       title: "Lomaa Skill",
       description: "Lomaaskill is an online learning platform offering a wide range of professional courses to enhance skills and career growth.",
       image: "/lomaa.png",
-      link: "https://github.com/Beharasaikumar/LomaaSkill.com",
-      link1: "http://lomaaskill.com",
+      github: "https://github.com/Beharasaikumar/LomaaSkill.com",
+      live: "http://lomaaskill.com",
     },
     {
       title: "Instagram Clone",
-      description: "Insta-Clone is a social media web app that replicates core Instagram features like photo sharing, likes, comments, and user profiles.",
+      description: "Insta-Clone replicates core Instagram features like photo sharing, likes, comments, and user profiles.",
       image: "/insta.jpg",
-      link: "https://github.com/kundetipavan/Insta-clone",
-            link1: "https://instanetlify.netlify.app",
-    },
-  ];
-
-  const skillsSteps = [
-    {
-      title: "Understanding Your Vision",
-      description: "I take the time to understand your goals, brand, and audience to create a tailored design strategy.",
+      github: "https://github.com/kundetipavan/Insta-clone",
+      live: "https://instanetlify.netlify.app",
     },
     {
-      title: "Wireframing & Prototyping",
-      description: "I create user-friendly prototypes to visualize structure and functionality before development.",
+      title: "Netflix Clone",
+      description: "Netflix clone showcasing a streaming UI with browsing, categories, and responsive design.",
+      image: "/netflix.png",
+      github: "https://github.com/kundetipavan/netflix-clone",
+      live: "https://net-flix-clone-by-sai.netlify.app/",
     },
     {
-      title: "Design & Development",
-      description: "Using modern technologies and clean design principles, I turn prototypes into functional apps.",
-    },
-    {
-      title: "Feedback & Delivery",
-      description: "I collaborate for feedback and ensure the final product exceeds your expectations before delivery.",
+      title: "StartUp Demo",
+      description: "StartUp Demo is a modern, responsive landing page designed to showcase a startup's services, features, and brand identity.",
+      image: "/start-up.png",
+      github: "https://github.com/kundetipavan/Start-Up-Demo",
+      live: "https://startupclone.netlify.app",
     },
   ];
 
   const skillLogos = [
-    { name: "HTML", src: "/html.png" },
-    { name: "CSS", src: "/css.png" },
-    { name: "JavaScript", src: "/js.png" },
-    { name: "Tailwind CSS", src: "/tailwind.png" },
-    { name: "ReactJS", src: "/react.png" },
-    { name: "Node.js", src: "/node.png" },
-    { name: "Express.js", src: "/express.png" },
-    { name: "MySQL", src: "/sql.png" },
-    { name: "MongoDB", src: "/mongodb.png" },
-    { name: "GitHub", src: "/github.png" },
-  ];
+  { name: "HTML", src: "/html.png" },
+  { name: "CSS", src: "/css.png" },
+  { name: "JavaScript", src: "/js.png" },
+  { name: "React", src: "/react.png" },
+  { name: "Node.js", src: "/node.png" },
+  { name: "Express.js", src: "/express.png" },
+  { name: "MySQL", src: "/sql.png" },
+  { name: "MongoDB", src: "/mongodb.png" },
+  { name: "GitHub", src: "/github.png" },
+  { name: "Tailwind CSS", src: "/tailwind.png" },
+];
+
+const skillsSteps = [
+  {
+    title: "Research & Discovery",
+    description: "Understanding client needs, competition, and target audience to craft a personalized plan.",
+  },
+  {
+    title: "Design & Development",
+    description: "Turning ideas into functional and visually stunning web experiences using the latest technologies.",
+  },
+  {
+    title: "Launch & Optimize",
+    description: "Deploying projects with precision and refining performance based on user feedback and analytics.",
+  },
+];
+
+
+  const visibleProjects = showAll ? allProjects : allProjects.slice(0, 2);
 
   return (
     <div
@@ -99,7 +96,7 @@ const Project = () => {
           Portfolio Showcase
         </h2>
         <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
-          Explore My Journey through Projects, Certificates, and Technical Expertise. Each Section Represents a Milestone in My Continuous Learning Path!
+          Explore My Journey through Projects, Certificates, and Technical Expertise.
         </p>
         <div className="flex justify-center gap-4 mt-6">
           {["Projects", "My Skill"].map((tab) => (
@@ -110,15 +107,16 @@ const Project = () => {
               className={`px-6 py-2 rounded-full transition-colors ${
                 activeTab === tab
                   ? "bg-pink-500 text-white hover:bg-pink-600"
-                  : "border border-gray-400 dark:border-gray-500 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white"
+                  : "border border-gray-400 dark:border-gray-500 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
               }`}
-              onClick={() => handleTabClick(tab)}
+              onClick={() => setActiveTab(tab)}
             >
               {tab}
             </button>
           ))}
         </div>
       </div>
+
       <AnimatePresence mode="wait">
         {activeTab === "Projects" && (
           <motion.div
@@ -127,44 +125,49 @@ const Project = () => {
             animate="visible"
             exit="exit"
             variants={zAxisVariant}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full"
+            className="flex flex-col items-center w-full"
           >
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 flex flex-col items-center text-center border border-gray-300 dark:border-gray-700"
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full mb-6">
+              {visibleProjects.map((project) => (
+                <div
+                  key={project.title}
+                  className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 flex flex-col items-center text-center border border-gray-300 dark:border-gray-700"
+                >
+                  <div className="relative w-full h-48 md:h-64 bg-gray-200 dark:bg-gray-700 rounded-lg mb-4 overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover rounded-lg"
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold text-pink-500 dark:text-pink-400 mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-400 text-sm mb-3">{project.description}</p>
+                  <div className="flex justify-center gap-5">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-sm text-pink-500 hover:underline">
+                      View on GitHub
+                    </a>
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-sm text-pink-500 hover:underline">
+                      View Live
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* MORE / LESS Button */}
+            {allProjects.length > 2 && (
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="mt-4 px-6 py-2 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition"
               >
-                <div className="relative w-full h-48 md:h-64 bg-gray-200 dark:bg-gray-700 rounded-lg mb-4 overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-lg" />
-                </div>
-                <h3 className="text-xl font-semibold text-pink-500 dark:text-pink-400 mb-2">{project.title}</h3>
-                <p className="text-gray-700 dark:text-gray-400 text-sm mb-3">{project.description}</p>
-               <div className="flex justify-center gap-5 mb-4">
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-pink-500 hover:underline"
-                  >
-                    View on GitHub
-                  </a>
-                )}
-                 {project.link1 && (
-                  <a
-                    href={project.link1}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-pink-500 hover:underline"
-                  >
-                    View on Output
-                  </a>
-                )}
-                </div>
-              </div>
-            ))}
+                {showAll ? "Show Less" : "Show More"}
+              </button>
+            )}
           </motion.div>
         )}
+
         {activeTab === "My Skill" && (
           <motion.div
             key="skills"
@@ -184,32 +187,32 @@ const Project = () => {
                 Technical Skills
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-                {skillLogos.map((logo, index) => (
+                {skillLogos.map((logo) => (
                   <motion.div
                     key={logo.name}
                     className="flex flex-col items-center"
                     variants={logoVariant}
                     animate="animate"
-                    custom={index}
                   >
                     <img
                       src={logo.src}
                       alt={`${logo.name} logo`}
                       className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
-                     />
+                    />
                     <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">{logo.name}</p>
                   </motion.div>
                 ))}
-              </div>
-             </motion.div> <br /><br />
-            <div className="flex flex-col lg:flex-row gap-8 items-start w-full">
-              <div className="flex-1 text-center lg:text-left mt-10">
+              </div><br />
+            </motion.div>
+            <div className="flex flex-col lg:flex-row gap-8 items-start w-full mt-10">
+              <div className="flex-1 text-center lg:text-left">
                 <h3 className="text-4xl md:text-3xl font-bold text-pink-500 dark:text-pink-400 mb-2">
-                  My approach that empowers my clients <br />
+                  My approach that empowers my clients
+                  <br />
                   <span className="text-black dark:text-white">2x their revenue</span>
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
-                  I've refined this process over 6+ months in the design industry, making it a proven approach you can trust with confidence
+                  I've refined this process over 6+ months in the design industry, making it a proven approach you can trust with confidence.
                 </p>
                 <div className="mt-8">
                   <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full flex items-center gap-x-2 hover:from-purple-700 hover:to-pink-600 transition-colors">
@@ -220,9 +223,10 @@ const Project = () => {
                   </button>
                 </div>
               </div>
+
               <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 w-full max-w-md border border-gray-300 dark:border-gray-700">
                 {skillsSteps.map((step, index) => (
-                  <div key={index} className="flex items-start gap-4 mb-4 last:mb-0">
+                  <div key={index} className="flex items-start gap-4 mb-4">
                     <div className="w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center font-bold">
                       {index + 1}
                     </div>
@@ -233,7 +237,7 @@ const Project = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div><br />
           </motion.div>
         )}
       </AnimatePresence>

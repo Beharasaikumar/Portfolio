@@ -4,27 +4,40 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Contact = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
 
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("");
+
   useEffect(() => {
     if (inView) {
-      controls.start({
-        opacity: 1,
-        rotateX: 0,
-        transition: { duration: 0.8, ease: "easeOut" },
-      });
+      controls.start({ opacity: 1, rotateX: 0, transition: { duration: 0.8, ease: "easeOut" } });
     } else {
-      controls.start({
-        opacity: 0,
-        rotateX: 90,
-        transition: { duration: 0.4, ease: "easeIn" },
-      });
+      controls.start({ opacity: 0, rotateX: 90, transition: { duration: 0.4, ease: "easeIn" } });
     }
   }, [inView, controls]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("Sending...");
+    try {
+      const response = await axios.post("http://localhost:5000/contact", formData);
+      setStatus(response.data.message);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      setStatus("Failed to send message. Please try again.");
+    }
+  };
 
   return (
     <motion.div
@@ -40,6 +53,7 @@ const Contact = () => {
           Let's collaborate to bring your ideas to life! Fill out the form below or reach out to me on social media.
         </p>
       </div>
+
       <div className="flex flex-col lg:flex-row items-center justify-around gap-8 max-w-7xl w-full">
         <div className="flex flex-col items-center gap-4">
           <div className="flex">
@@ -50,94 +64,48 @@ const Contact = () => {
             </div>
             <div className="text-gray-700 dark:text-gray-300">
               <h3>&nbsp;&nbsp;Email</h3>
-              <p>&nbsp;&nbsp;beharasaikumar1@gmail.com</p><br />
+
+              <p>&nbsp;&nbsp;beharasaikumar1@gmail.com</p>
+              <br />
               <h3>&nbsp;&nbsp;Github</h3>
-              <p>&nbsp;&nbsp;https://github.com/Beharasaikumar</p><br />
-               <h3>&nbsp;&nbsp;LinkedIn</h3>
-              <p>&nbsp;&nbsp;www.linkedin.com/in/behara-sai-kumar</p><br />
+              <p>&nbsp;&nbsp;github.com/Beharasaikumar</p><br />
+              <h3>&nbsp;&nbsp;LinkedIn</h3>
+              <p>&nbsp;&nbsp;linkedin.com/in/behara-sai-kumar</p><br />
             </div>
           </div>
-          <h3 className="text-xl font-semibold text-pink-600 dark:text-pink-400">Connect With Me</h3>
-          <div className="flex justify-center gap-4">
-            <a
-              href="https://chat.example.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-              aria-label="Chat"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-gray-800 dark:text-gray-300"
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                viewBox="0 0 24 24"
-              >
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-              </svg>
-            </a>
-            <a
-              href="https://linkedin.com/in/happy-dude"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-              aria-label="LinkedIn"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-gray-800 dark:text-gray-300"
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                viewBox="0 0 24 24"
-              >
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
-              </svg>
-            </a>
-            <a
-              href="https://instagram.com/happy.dude"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-              aria-label="Instagram"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-gray-800 dark:text-gray-300"
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                viewBox="0 0 24 24"
-              >
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </a>
+          <div>
+            <h2 className="text-xl md:text-xl font-bold  text-pink-600 dark:text-pink-400 mb-2">Connect with Me</h2>
+            <div className="flex justify-evenly gap-3">
+              <a href="mailto:beharasaikumar1@gmail.com"
+               target="_blank" 
+               className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+               rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faEnvelope} fontSize={"24"} /></a>
+              <a href="https://github.com/Beharasaikumar" 
+              className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+              target="_blank">
+                <FontAwesomeIcon icon={faGithub} fontSize={"24"} /></a>
+              <a href="https://www.linkedin.com/in/behara-sai-kumar-9a62582b3" 
+              className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+              target="_blank">
+                <FontAwesomeIcon icon={faLinkedin} fontSize={"24"} /></a>
+            </div>
           </div>
         </div>
-        <div className="bg-gray-100 dark:bg-gray-800 dark:bg-opacity-80 bg-opacity-90 rounded-lg p-8 w-full max-w-md border border-gray-300 dark:border-gray-700">
+
+        <form
+          onSubmit={handleSubmit}
+          className="bg-gray-100 dark:bg-gray-800 dark:bg-opacity-80 bg-opacity-90 rounded-lg p-8 w-full max-w-md border border-gray-300 dark:border-gray-700"
+        >
           <div className="flex flex-col gap-4">
             <div>
               <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 text-sm mb-1">Name</label>
               <input
                 type="text"
                 id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Your Name"
                 className="w-full px-4 py-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
               />
@@ -147,6 +115,9 @@ const Contact = () => {
               <input
                 type="email"
                 id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Your Email"
                 className="w-full px-4 py-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
               />
@@ -155,16 +126,20 @@ const Contact = () => {
               <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 text-sm mb-1">Message</label>
               <textarea
                 id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 rows="4"
                 placeholder="Your Message"
                 className="w-full px-4 py-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
               ></textarea>
             </div>
-            <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full hover:from-purple-700 hover:to-pink-600 transition-colors">
+            <button type="submit" className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full hover:from-purple-700 hover:to-pink-600 transition-colors">
               Send Message
             </button>
+            {status && <p className="text-sm text-center mt-2 text-pink-600 dark:text-pink-400">{status}</p>}
           </div>
-        </div>
+        </form>
       </div>
     </motion.div>
   );
