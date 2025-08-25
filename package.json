@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
-  "homepage": "https://github.com/Beharasaikumar/Portfolio#readme",
+  "homepage": "https://Beharasaikumar.github.io/Portfolio",
   "bugs": {
     "url": "https://github.com/Beharasaikumar/Portfolio/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Beharasaikumar/Portfolio.git"
+    "url": "https://github.com/Beharasaikumar/Portfolio.git"
   },
   "license": "ISC",
   "author": "",
@@ -19,7 +19,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy":"npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
